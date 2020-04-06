@@ -1,0 +1,35 @@
+{
+    "name": "idmahbub/ppob",
+    "description": "PPOB Multi Pulsa API PHP Library.",
+    "authors": [
+        {
+            "name": "idmahbub",
+            "email": "bubyc58@gmail.com"
+        }
+    ],
+    "version": "0.3.2",
+    "require": {
+        "php": "^7.4",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/support": "^6.0"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Idmahbub\\PPOB\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Idmahbub\\PPOB\\PPOBServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "license":"GPL-3.0-or-later"
+
+}
