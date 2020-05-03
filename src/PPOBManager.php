@@ -48,7 +48,7 @@ class PPOBManager extends Manager
     }
     protected function createJavaH2hDriver(array $config)
     {
-        return new Providers\JavaH2h(
+        return new Providers\JavaH2H(
             $config['username'], $config['apikey'], $config['secret'], $this->client
         );
     }

@@ -17,7 +17,8 @@ class Digiflazz extends AbstractProvider
         'topup' => 'topup',
         'status' => 'inquiry',
         'pricelist' => 'prepaid',
-        'req_cmd'   => 'cmd'
+        'req_cmd'   => 'cmd',
+        'commands'  =>  'commands'
     ];
 
     protected $prefix = [
@@ -68,16 +69,49 @@ class Digiflazz extends AbstractProvider
     {
         return $this->send($this->signedBalance([
             'ref_id' => 'depo',
-            'req_cmd' => 'none'
+            'cmd' => 'deposit'
         ]));
     }
-
-   
+    public function cekCustNo($customer_no){
+        return $this->send($this->signedCekCustNo([
+            'ref_id' => 'transaction',
+            'commands' => 'pln-subscribe',
+            'customer_no' => $customer_no
+        ]));
+    }
+    public function cektagihan($code, $customer_no,$refId,$testing)
+    {
+        return $this->send($this->signedCektagihan([
+            'ref_id' => $refId,
+            'commands' => 'inq-pasca',
+            'buyer_sku_code' => $code,
+            'customer_no' => $customer_no,
+            'testing' => $testing
+        ]));
+    }
+    public function orderPre($code, $customer_no,$refId,$testing)
+    {
+        return $this->send($this->signedOrderPre([
+            'ref_id' => $refId,
+            'buyer_sku_code' => $code,
+            'customer_no' => $customer_no,
+            'testing' => $testing
+        ]));
+    }
+    public function orderPas($code, $customer_no,$refId)
+    {
+        return $this->send($this->signedOrderPas([
+            'ref_id' => $refId,
+            'commands' => 'pay-pasca',
+            'buyer_sku_code' => $code,
+            'customer_no' => $customer_no
+        ]));
+    }
     public function pricelist($req_cmd)
     {
         return $this->send($this->signedPricelist([
             'ref_id' => 'pricelist',
-            'req_cmd' => $req_cmd
+            'cmd' => $req_cmd
         ]));
     }
 
@@ -106,7 +140,6 @@ class Digiflazz extends AbstractProvider
     protected function signRequest($command, $data = [])
     {
         return array_merge($data, [
-            'cmd' => $data['req_cmd'] ? $data['req_cmd'] : $this->commands[$command],
             'username' => $this->username,
             'sign' => md5($this->username . $this->apikey . $data['ref_id'])
         ]);
@@ -114,13 +147,13 @@ class Digiflazz extends AbstractProvider
 
     protected function send($data)
     {
+        //return $data; //debuging
         $response = $this->client->request('POST', $this->endpoint($data['ref_id']), [
             'headers' => ['Content-Type' => 'application/json'],
             'body' => json_encode($data)
         ]);
 
         return $this->buildResult($response);
-        //return $data;
     }
 
     protected function endpoint($ref_id =null)
@@ -131,7 +164,7 @@ class Digiflazz extends AbstractProvider
             $ref_id = "price-list";
         }else if ($ref_id=='deposit'){
             $ref_id = "deposit";
-        }else if ($ref_id=='ref_id'){
+        }else{
             $ref_id = "transaction";
         }
         return $this->production ?
