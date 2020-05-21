@@ -89,6 +89,14 @@ class Digiflazz extends AbstractProvider
             'testing' => $testing
         ]));
     }
+    public function checkinquiry($customer_no)
+    {
+        return $this->send($this->signedCheckinquiry([
+            'ref_id' => 'pln-subscribe',
+            'commands' => 'pln-subscribe',
+            'customer_no' => $customer_no,
+        ]));
+    }
     public function orderPre($code, $customer_no,$refId,$testing)
     {
         return $this->send($this->signedOrderPre([
