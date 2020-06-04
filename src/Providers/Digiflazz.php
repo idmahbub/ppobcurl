@@ -72,6 +72,15 @@ class Digiflazz extends AbstractProvider
             'cmd' => 'deposit'
         ]));
     }
+    public function sysdeposit($amount,$bank,$owner_name)
+    {
+        return $this->send($this->signedSysdeposit([
+            'ref_id' => 'deposit',
+            "amount" => $amount,
+            "Bank" => $bank,
+            "owner_name" => $owner_name
+        ]));
+    }
     public function cekCustNo($customer_no){
         return $this->send($this->signedCekCustNo([
             'ref_id' => 'transaction',
