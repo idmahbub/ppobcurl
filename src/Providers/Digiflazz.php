@@ -76,9 +76,9 @@ class Digiflazz extends AbstractProvider
     {
         return $this->send($this->signedSysdeposit([
             'ref_id' => 'deposit',
-            "amount" => $amount,
-            "Bank" => $bank,
-            "owner_name" => $owner_name
+            'amount' => (int)$amount,
+            'Bank' => $bank,
+            'owner_name' => $owner_name
         ]));
     }
     public function cekCustNo($customer_no){
@@ -164,7 +164,7 @@ class Digiflazz extends AbstractProvider
 
     protected function send($data)
     {
-        //return $data; //debuging
+        //$data['endpoint']= $this->endpoint($data['ref_id']); return $data; //debuging
         $response = $this->client->request('POST', $this->endpoint($data['ref_id']), [
             'headers' => ['Content-Type' => 'application/json'],
             'body' => json_encode($data)

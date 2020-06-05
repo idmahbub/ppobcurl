@@ -1,5 +1,5 @@
 
-# PPOB Package for Laravel 5
+# PPOB Package for Laravel 6.x
 
 The purpose of this package is to allow your website to purchase 
 many prepaid digital products like Token PLN, Pulsa, Paket Data and more in Indonesia.
@@ -22,7 +22,7 @@ To get started with PPOB, run this command or add the package to your `composer.
 
 The PPOB package use Laravel autodiscovery so it will be loaded automatically.
 Copy the `config` file with the following command:
-`php artisan vendor:publish --provider="Rick20\PPOB\PPOBServiceProvider"`
+`php artisan vendor:publish --provider="Idmahbub\PPOB\PPOBServiceProvider"`
 
 Finally add your provider's account in the `.env` file:
 ```
@@ -99,5 +99,4 @@ $json += array("df" => PPOB::account('account-jh2h')->pricelist($request->catego
 
 ## Bugs & Improvements
 
-Feel free to report me any bug you found. I would be also very happy to receive pull requests for improvements and for other PPOB provider as well.
-If you find this package helpful, a donation would be awesome! =)
+Feel free to report me any bug you found.
