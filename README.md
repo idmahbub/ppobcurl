@@ -5,11 +5,11 @@ The purpose of this package is to allow your website to purchase
 many prepaid digital products like Token PLN, Pulsa, Paket Data and more in Indonesia.
 
 Right now, the following providers are supported:
-- MobilePulsa ([https://mobilepulsa.com](https://mobilepulsa.com))
-- PortalPulsa ([https://portalpulsa.com](https://portalpulsa.com))
-- Tripay ([https://tripay.co.id](https://tripay.co.id))
-- IndoH2H ([https://indoh2h.com](https://indoh2h.com))
-
+- MobilePulsa
+- PortalPulsa
+- Tripay
+- IndoH2H
+- DIGIFLAZZ
 
 ## Installation
 
@@ -69,9 +69,9 @@ To add more accounts in a single provider, add those accounts in `config/ppob.ph
 After all sets, use the PPOB as follows:
 ```php
 
-use Rick20\PPOB\Products\Pulsa;
-use Rick20\PPOB\Products\TokenPLN;
-use Rick20\PPOB\Products\GenericProduct;
+use Idmahbub\PPOB\Products\Pulsa;
+use Idmahbub\PPOB\Products\TokenPLN;
+use Idmahbub\PPOB\Products\GenericProduct;
 
 // Topup Pulsa
 $status = PPOB::topup(new Pulsa('082112345678', 50000), 'ref123');
