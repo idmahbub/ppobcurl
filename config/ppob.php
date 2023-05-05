@@ -44,7 +44,7 @@ return [
         'account-digiflazz' => [
             'provider' => 'digiflazz',
             'username' => env('DIGIFLAZZ_USERNAME'),
-            'apikey' => env('DIGIFLAZZ_DEV_APIKEY'),
+            'apikey' => env('APP_ENV')=='production' ? env('DIGIFLAZZ_PROD_APIKEY') : env('DIGIFLAZZ_DEV_APIKEY'),
         ],
     ]
 ];

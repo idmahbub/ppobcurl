@@ -115,13 +115,14 @@ class Digiflazz extends AbstractProvider
             'testing' => $testing
         ]));
     }
-    public function orderPas($code, $customer_no,$refId)
+    public function orderPas($code, $customer_no,$refId,$testing)
     {
         return $this->send($this->signedOrderPas([
             'ref_id' => $refId,
             'commands' => 'pay-pasca',
             'buyer_sku_code' => $code,
-            'customer_no' => $customer_no
+            'customer_no' => $customer_no,
+            'testing' => $testing
         ]));
     }
     public function pricelist($req_cmd)
