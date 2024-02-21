@@ -7,7 +7,7 @@
             "email": "bubyc58@gmail.com"
         }
     ],
-    "version": "0.3.2",
+    "version": "1.0",
     "require": {
         "php": "^7.4",
         "guzzlehttp/guzzle": "^6.5",
